@@ -54,9 +54,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             videoContainer.innerHTML = `
                 <iframe 
-                    src="https://www.youtube.com/embed/${videoId}?playsinline=1" 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1" 
                     frameborder="0" 
-                    allowfullscreen>
+                    allow="autoplay; fullscreen">
                 </iframe>
             `;
 
