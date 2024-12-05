@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', async () => {
     const currentDateElement = document.getElementById('currentDate');
     const videoContainer = document.getElementById('videoContainer');
@@ -38,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const channelId = channelData.items[0].id;
 
             const videoResponse = await fetch(
-                `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${MAX_RESULTS}&type=video&key=${API_KEY}`
+                `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=${MAX_RESULTS}&type=video&order=date&key=${API_KEY}`
             );
             const videoData = await videoResponse.json();
 
@@ -47,10 +45,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            const randomVideo = videoData.items[Math.floor(Math.random() * videoData.items.length)];
-            const videoId = randomVideo.id.videoId;
-            currentVideoTitle = randomVideo.snippet.title;
-            currentVideoDescription = randomVideo.snippet.description;
+            // Pega o vídeo mais recente
+            const latestVideo = videoData.items[0]; // Primeira posição sempre será o mais recente
+            const videoId = latestVideo.id.videoId;
+            currentVideoTitle = latestVideo.snippet.title;
+            currentVideoDescription = latestVideo.snippet.description;
             currentVideoUrl = `https://www.youtube.com/shorts/${videoId}`;
 
             videoContainer.innerHTML = `
@@ -81,4 +80,3 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     fetchShortsFromChannel();
 });
-
