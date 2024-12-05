@@ -1,7 +1,8 @@
-
 document.addEventListener('DOMContentLoaded', async () => {
     const currentDateElement = document.getElementById('currentDate');
     const videoContainer = document.getElementById('videoContainer');
+    const channelButton = document.getElementById('channelButton');
+    const shareButton = document.getElementById('shareButton');
 
     // Exibe a data atual
     const today = new Date().toLocaleDateString('pt-BR', {
@@ -10,9 +11,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentDateElement.textContent = `Hoje é ${today}`;
 
     // Configuração da API do YouTube
-    const API_KEY = 'AIzaSyC1te1WStxSaMTSAyaM88TUWAAExXCMqJU'; // Substitua pela sua chave de API
+    const API_KEY = 'SUA_CHAVE_DE_API_AQUI'; // Substitua pela sua chave de API
     const CHANNEL_USERNAME = '2010camillo'; // Nome do canal (sem @)
-    const MAX_RESULTS = 50; // Número maior para aumentar a chance de encontrar Shorts
+    const MAX_RESULTS = 50;
+
+    let currentVideoTitle = '';
+    let currentVideoDescription = '';
+    let currentVideoUrl = '';
 
     // Função para buscar vídeos do canal
     async function fetchShortsFromChannel() {
@@ -37,58 +42,28 @@ document.addEventListener('DOMContentLoaded', async () => {
             const videoData = await videoResponse.json();
 
             if (!videoData.items || videoData.items.length === 0) {
-                videoContainer.innerHTML = '<p>Nenhum vídeo encontrado</p>';
-                return;
-            }
-
-            // 3. Filtrar vídeos curtos (Shorts)
-            const videoDetailsPromises = videoData.items.map(async (item) => {
-                const videoId = item.id.videoId;
-
-                const detailsResponse = await fetch(
-                    `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${videoId}&key=${API_KEY}`
-                );
-                const detailsData = await detailsResponse.json();
-
-                if (detailsData.items.length > 0) {
-                    const duration = detailsData.items[0].contentDetails.duration;
-
-                    // Converter duração de ISO 8601 (PT#M#S) para segundos
-                    const match = duration.match(/PT(\d+M)?(\d+S)?/);
-                    const minutes = match[1] ? parseInt(match[1].replace('M', '')) : 0;
-                    const seconds = match[2] ? parseInt(match[2].replace('S', '')) : 0;
-                    const totalSeconds = minutes * 60 + seconds;
-
-                    return totalSeconds <= 60 ? item : null; // Retorna só Shorts
-                }
-
-                return null;
-            });
-
-            const videos = (await Promise.all(videoDetailsPromises)).filter((video) => video !== null);
-
-            if (videos.length === 0) {
                 videoContainer.innerHTML = '<p>Nenhum Short encontrado</p>';
                 return;
             }
 
-            // 4. Selecionar um Short aleatório
-            const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+            // 3. Selecionar um vídeo aleatório
+            const randomVideo = videoData.items[Math.floor(Math.random() * videoData.items.length)];
             const videoId = randomVideo.id.videoId;
-            const videoTitle = randomVideo.snippet.title;
-            const videoDescription = randomVideo.snippet.description;
+            currentVideoTitle = randomVideo.snippet.title;
+            currentVideoDescription = randomVideo.snippet.description;
+            currentVideoUrl = `https://www.youtube.com/shorts/${videoId}`;
 
-            // Exibir o vídeo
+            // Exibir o vídeo em formato vertical
             videoContainer.innerHTML = `
-                <h3>${videoTitle}</h3>
+                <div class="video-title">${currentVideoTitle}</div>
                 <iframe 
-                    width="560" 
-                    height="315" 
-                    src="https://www.youtube.com/embed/${videoId}" 
+                    width="100%" 
+                    height="400" 
+                    src="https://www.youtube.com/embed/${videoId}?playsinline=1" 
                     frameborder="0" 
                     allowfullscreen>
                 </iframe>
-                <p>${videoDescription}</p>
+                <div class="video-description">${currentVideoDescription}</div>
             `;
         } catch (error) {
             console.error('Erro ao buscar vídeos:', error);
@@ -96,7 +71,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // Configurar botão para ir ao canal
+    channelButton.addEventListener('click', () => {
+        window.open('https://www.youtube.com/@2010camillo/shorts', '_blank');
+    });
+
+    // Configurar botão para compartilhar no WhatsApp
+    shareButton.addEventListener('click', () => {
+        const shareText = `Assista este vídeo: ${currentVideoTitle}\n\n${currentVideoDescription}\n\nVeja aqui: ${currentVideoUrl}`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+        window.open(whatsappUrl, '_blank');
+    });
+
     // Carregar Shorts
     fetchShortsFromChannel();
 });
-
