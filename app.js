@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentDateElement.textContent = `Hoje é ${today}`;
 
     // Configuração da API do YouTube
-    const API_KEY = 'SUA_CHAVE_DE_API_AQUI'; // Substitua pela sua chave de API
+    const API_KEY = 'AIzaSyC1te1WStxSaMTSAyaM88TUWAAExXCMqJU'; // Substitua pela sua chave de API
     const CHANNEL_USERNAME = '2010camillo'; // Nome do canal (sem @)
     const MAX_RESULTS = 10;
 
