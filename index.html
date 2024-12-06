@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            background-color: #121212;
-            color: #e0e0e0;
+            background-color: #121212; /* Fundo escuro */
+            color: #f8f9fa; /* Texto claro */
             font-family: 'Arial', sans-serif;
         }
         .container {
@@ -42,7 +42,7 @@
         }
         .video-description {
             font-size: 0.9rem;
-            color: #b0b0b0;
+            color: #c2c2c2;
             margin-bottom: 15px;
         }
         .btn-custom {
@@ -56,8 +56,8 @@
             background-color: #FF0000;
             color: #fff;
         }
-        .btn-dark {
-            background-color: #343a40;
+        .btn-reload {
+            background-color: #007bff;
             color: #fff;
         }
         footer {
@@ -67,19 +67,11 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        .mb-4 {
-            margin-bottom: 0.5rem !important;
-            margin-top: 1rem;
-        }
-        .img-fluid {
-            max-width: 80%;
-            height: auto;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="bomdia.png" alt="Bom Dia" class="img-fluid mb-4"> <!-- Imagem "Bom Dia" -->
+        <img src="bomdia.png" alt="Bom Dia" class="img-fluid mb-4">
         <p id="currentDate"></p>
 
         <div class="video-container">
@@ -99,13 +91,13 @@
         <button id="shareButton" class="btn btn-success btn-custom">
             <i class="fab fa-whatsapp"></i> WhatsApp
         </button>
-        <button id="reloadButton" class="btn btn-dark btn-custom">
-            <i class="fas fa-sync-alt"></i> Mais um Bom Dia
+        <button id="reloadButton" class="btn btn-reload btn-custom">
+            <i class="fas fa-redo-alt"></i> Mais um Bom Dia
         </button>
     </div>
 
     <footer>
-        © 2024, Wabes - Desenvolvido com 🩵
+        © 2024, Wabes - Desenvolvido com ❤️
     </footer>
 
     <script src="app.js"></script>
