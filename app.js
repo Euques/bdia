@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Configuração da API do YouTube
     const API_KEY = 'AIzaSyC1te1WStxSaMTSAyaM88TUWAAExXCMqJU'; // Substitua pela sua chave de API
     const CHANNEL_USERNAME = '2010camillo'; // Nome do canal (sem @)
-    const MAX_RESULTS = 50;
+    const MAX_RESULTS = 100;
 
     let videos = []; // Array para armazenar vídeos
     let currentVideoIndex = -1;
