@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            background-color: #000;
-            color: #fff;
+            background-color: #121212;
+            color: #e0e0e0;
             font-family: 'Arial', sans-serif;
         }
         .container {
@@ -22,12 +22,11 @@
         }
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
+            padding-bottom: 182%; /* Proporção 350 x 640 */
             height: 0;
             overflow: hidden;
             border-radius: 10px;
-            background: #111;
-            margin-bottom: 20px;
+            background: #000;
         }
         .video-wrapper iframe {
             position: absolute;
@@ -43,7 +42,7 @@
         }
         .video-description {
             font-size: 0.9rem;
-            color: #ccc;
+            color: #b0b0b0;
             margin-bottom: 15px;
         }
         .btn-custom {
@@ -57,17 +56,14 @@
             background-color: #FF0000;
             color: #fff;
         }
-        .btn-random {
-            background-color: #007bff;
+        .btn-dark {
+            background-color: #343a40;
             color: #fff;
-            font-size: 1rem;
-            width: 80%;
-            margin-bottom: 10px;
         }
         footer {
             margin-top: 30px;
             font-size: 0.7rem;
-            color: #666;
+            color: #6c757d;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -83,16 +79,14 @@
 </head>
 <body>
     <div class="container">
-        <img src="bomdia.png" alt="Bom Dia" class="img-fluid mb-4">
+        <img src="bomdia.png" alt="Bom Dia" class="img-fluid mb-4"> <!-- Imagem "Bom Dia" -->
         <p id="currentDate"></p>
 
         <div class="video-container">
-            <div class="video-wrapper" id="videoContainer"></div>
+            <div class="video-wrapper" id="videoContainer">
+                <!-- Vídeo será exibido aqui -->
+            </div>
         </div>
-
-        <button id="randomButton" class="btn btn-random">
-            <i class="fas fa-sync-alt"></i> Mais um Bom Dia
-        </button>
 
         <div id="textContainer">
             <div class="video-title"></div>
@@ -105,10 +99,13 @@
         <button id="shareButton" class="btn btn-success btn-custom">
             <i class="fab fa-whatsapp"></i> WhatsApp
         </button>
+        <button id="reloadButton" class="btn btn-dark btn-custom">
+            <i class="fas fa-sync-alt"></i> Mais um Bom Dia
+        </button>
     </div>
 
     <footer>
-        © 2024, Wabes - Desenvolvido com ❤️
+        © 2024, Wabes - Desenvolvido com 🩵
     </footer>
 
     <script src="app.js"></script>
