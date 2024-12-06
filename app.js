@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (currentVideoIndex === -1) return;
 
         const video = videos[currentVideoIndex];
-        const shareText = `Assista este vídeo: ${video.title}\n\n${video.description}\n\nVeja aqui: https://www.youtube.com/shorts/${video.id}`;
+        const shareText = `Bom Dia: ${video.title}\n\n${video.description}\n\nVeja aqui: https://www.youtube.com/shorts/${video.id}`;
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
         window.open(whatsappUrl, '_blank');
     });
